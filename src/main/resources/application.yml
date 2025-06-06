@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: video
+  #??????????
+  datasource:
+    url: jdbc:mysql://localhost:3306/web-backend
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: gw123456,
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+
+
+
+
+
+#Mybatis?????
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    #??????????
+    map-underscore-to-camel-case: true
+
+
+
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: web-img-gw
+    region: cn-beijing
+
+
+
+jwt:
+  secret-key: Gw123ertyuinsxljknsjknc
+
+
+
+zhipu:
+  api:
+    key: 5d1d319f53d84072989398465e4d3626.NGYHr2aeRfs8LUGx

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.webwebsite.mapper.CourseViewLogMapper">
+
+    <insert id="insert" parameterType="com.example.webwebsite.pojo.CourseViewLog">
+        INSERT INTO course_view_log (user_id, course_id, lesson_id, start_time, end_time, duration_seconds, device, region)
+        VALUES (#{userId}, #{courseId}, #{lessonId}, #{startTime}, #{endTime}, #{durationSeconds}, #{device}, #{region})
+    </insert>
+
+    <select id="findByUserId" parameterType="int" resultType="com.example.webwebsite.pojo.CourseViewLog">
+        SELECT * FROM course_view_log WHERE user_id = #{userId}
+    </select>
+
+    <select id="findByCourseId" parameterType="long" resultType="com.example.webwebsite.pojo.CourseViewLog">
+        SELECT * FROM course_view_log WHERE course_id = #{courseId}
+    </select>
+
+    <select id="getTotalViewDurationByCourseId" parameterType="long" resultType="int">
+        SELECT SUM(duration_seconds) FROM course_view_log WHERE course_id = #{courseId}
+    </select>
+
+    <select id="getViewCountByCategory" resultType="map">
+        SELECT c.category_id, COUNT(cvl.id) as viewCount
+        FROM course_view_log cvl
+                 JOIN course c ON cvl.course_id = c.id
+        GROUP BY c.category_id
+    </select>
+
+    <select id="findTopCoursesByViewCount" resultType="map">
+        SELECT cvl.course_id, c.title, COUNT(cvl.id) as viewCount
+        FROM course_view_log cvl
+                 JOIN course c ON cvl.course_id = c.id
+        GROUP BY cvl.course_id, c.title
+        ORDER BY viewCount DESC
+            LIMIT #{limit}
+    </select>
+
+
+
+    <!-- 新增：获取用户在指定课程的已观看分集数 -->
+    <select id="getWatchedLessonsCount" resultType="int">
+        SELECT COUNT(DISTINCT lesson_id)
+        FROM course_view_log
+        WHERE course_id = #{courseId} AND user_id = #{userId} AND lesson_id IS NOT NULL
+    </select>
+
+    <!-- 新增：获取用户在指定课程的总观看时长 -->
+    <select id="getUserCourseViewDuration" resultType="int">
+        SELECT COALESCE(SUM(duration_seconds), 0)
+        FROM course_view_log
+        WHERE course_id = #{courseId} AND user_id = #{userId}
+    </select>
+</mapper>
