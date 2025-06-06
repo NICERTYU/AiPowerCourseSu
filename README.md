@@ -37,7 +37,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/your-username/ai-learning-platform.git
+git clone https://github.com/NICERTYU/AiPowerCourseSu.git
 cd ai-learning-platform
 
 # 后端启动
