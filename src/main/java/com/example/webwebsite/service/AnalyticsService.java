@@ -6,6 +6,7 @@ package com.example.webwebsite.service;
  */
 
 import com.example.webwebsite.dto.CourseProgressDTO;
+import com.example.webwebsite.dto.UserCourseViewDTO;
 import com.example.webwebsite.mapper.CourseViewLogMapper;
 import com.example.webwebsite.mapper.LessonMapper;
 import com.example.webwebsite.pojo.CourseViewLog;
@@ -75,5 +76,11 @@ public class AnalyticsService {
         progress.setCompletionPercentage(Math.round(completionPercentage * 10) / 10.0); // 保留1位小数
 
         return progress;
+    }
+
+
+
+    public List<UserCourseViewDTO> getUserCourseViewData(Integer userId) {
+        return courseViewLogMapper.findUserCourseViewData(userId);
     }
 }

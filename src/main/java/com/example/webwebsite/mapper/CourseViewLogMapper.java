@@ -5,6 +5,7 @@ package com.example.webwebsite.mapper;
  * @date 2025/6/5
  */
 
+import com.example.webwebsite.dto.UserCourseViewDTO;
 import com.example.webwebsite.pojo.CourseViewLog;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -31,4 +32,9 @@ public interface CourseViewLogMapper {
 
     // 新增：获取用户在指定课程的总观看时长
     Integer getUserCourseViewDuration(Long courseId, Integer userId);
+
+
+
+    // 新增：按用户 ID 查询每个课程的观看数据
+    List<UserCourseViewDTO> findUserCourseViewData(Integer userId);
 }

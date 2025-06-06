@@ -50,4 +50,18 @@
         FROM course_view_log
         WHERE course_id = #{courseId} AND user_id = #{userId}
     </select>
+    <select id="findUserCourseViewData" resultType="com.example.webwebsite.dto.UserCourseViewDTO">
+        <!-- 新增：按用户 ID 查询每个课程的观看数据 -->
+
+            SELECT
+                cvl.course_id AS courseId,
+                c.title AS courseTitle,
+                COALESCE(SUM(cvl.duration_seconds), 0) AS totalDurationSeconds
+            FROM course_view_log cvl
+                     JOIN course c ON cvl.course_id = c.id
+            WHERE cvl.user_id = #{userId}
+            GROUP BY cvl.course_id, c.title
+            ORDER BY cvl.course_id
+
+    </select>
 </mapper>

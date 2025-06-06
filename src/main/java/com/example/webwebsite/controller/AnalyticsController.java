@@ -7,6 +7,7 @@ package com.example.webwebsite.controller;
 
 
 import com.example.webwebsite.dto.CourseProgressDTO;
+import com.example.webwebsite.dto.UserCourseViewDTO;
 import com.example.webwebsite.pojo.CourseViewLog;
 import com.example.webwebsite.pojo.Result;
 import com.example.webwebsite.service.AnalyticsService;
@@ -40,7 +41,6 @@ public class AnalyticsController {
     }
 
 
-    // 新增：获取用户课程观看进度
     @GetMapping("/progress/{courseId}")
     public Result getCourseProgress(
             @PathVariable Long courseId,
@@ -54,5 +54,13 @@ public class AnalyticsController {
     public Result getUserTotalViewData(@PathVariable Integer userId) {
         List<CourseViewLog> logs = analyticsService.getUserViewLogs(userId);
         return Result.success(logs);
+    }
+
+
+
+    @GetMapping("/user/{userId}")
+    public Result getUserCourseViewData(@PathVariable Integer userId) {
+        List<UserCourseViewDTO> result = analyticsService.getUserCourseViewData(userId);
+        return Result.success(result);
     }
 }
