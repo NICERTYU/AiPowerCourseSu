@@ -67,6 +67,7 @@ public class CourseController {
     @GetMapping ("/courses/{id}")
     public Result getCourse(@PathVariable Long id)
     {
+        log.info("getCourse: id={}", id);
         Course course = courseService.getCourseById(id);
         return Result.success(course);
     }

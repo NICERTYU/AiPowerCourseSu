@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class Result {
 
+    public static final Integer SUCCESS_CODE = 1;
     private Integer code; //编码：1成功，0为失败
     private String msg; //错误信息
     private Object data; //数据
