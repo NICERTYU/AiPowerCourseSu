@@ -83,6 +83,23 @@ public class CourseController {
 
 
 
+    @DeleteMapping("/courses/{id}")
+    public Result deleteCourse(@PathVariable Long id)
+    {
+        courseService.deleteCourse(id);
+        return Result.success();
+    }
+
+
+    @PostMapping("/course/create")
+     public Result createCourse(@RequestBody Course course)
+    {
+        courseService.createCourse(course);
+        return Result.success();
+    }
+
+
+
 
 
 

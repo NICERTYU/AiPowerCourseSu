@@ -77,6 +77,13 @@ public class LessonController {
         return Result.success(lessonService.getAllInfoByCourseId(courseId));
     }
 
+    @DeleteMapping("/lesson/delete")
+    public Result deleteLesson(@RequestParam Long lessonId) {
+        log.info("删除课程");
+        lessonService.deleteLesson(lessonId);
+        return Result.success();
+    }
+
 
 
 

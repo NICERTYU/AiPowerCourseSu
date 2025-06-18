@@ -54,5 +54,19 @@ public class CourseServiceImpl  implements CourseService {
         courseMapper.updateCourse(course);
     }
 
+    @Override
+    public void deleteCourse(Long id) {
+
+        courseMapper.deleteCourse(id);
+    }
+
+    @Override
+    public void createCourse(Course course) {
+
+        course.setCreatedAt(LocalDateTime.now());
+        course.setUpdatedAt(LocalDateTime.now());
+        courseMapper.createCourse(course);
+    }
+
 
 }

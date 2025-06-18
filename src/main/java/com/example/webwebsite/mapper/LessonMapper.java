@@ -34,4 +34,7 @@ public interface LessonMapper {
     Integer getTotalCourseDuration(Long courseId);
 
 
+
+    @Select("delete from lesson where id = #{lessonId}")
+    void deleteLesson(Long lessonId);
 }

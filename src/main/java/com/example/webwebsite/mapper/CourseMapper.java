@@ -39,4 +39,11 @@ public interface CourseMapper {
 
 
     void updateCourse(Course course);
+
+    @Update("delete from course where id = #{id}")
+    void deleteCourse(Long id);
+
+
+    @Update("insert into course (title, description, teacher_id) values (#{title}, #{description}, #{teacherId})")
+    void createCourse(Course course);
 }

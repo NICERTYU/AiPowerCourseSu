@@ -12,4 +12,6 @@ public interface LessonService {
     Object getLessonsByCourseId(Long courseId);
 
     Object getAllInfoByCourseId(Long courseId);
+
+    void deleteLesson(Long lessonId);
 }

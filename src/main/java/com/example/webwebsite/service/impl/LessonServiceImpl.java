@@ -59,4 +59,10 @@ public class LessonServiceImpl implements LessonService {
 
 
     }
+
+    @Override
+    public void deleteLesson(Long lessonId) {
+
+        lessonMapper.deleteLesson(lessonId);
+    }
 }
